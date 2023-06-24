@@ -11,6 +11,7 @@ export const LogButton = styled(Button)`
   height: 45px;
   margin-bottom: 15px;
   font-size: 18px;
+  background-color: #ae1abe;
 `;
 
 export const UserIcon = styled(MailOutlined)`
@@ -27,10 +28,10 @@ export const InputForm = styled(Input)`
   width: 100%;
 `;
 
-export const RegLink = styled.div`
-  font-size: 18px;
-  text-align: center;
-`;
+// export const RegLink = styled.div`
+//   font-size: 18px;
+//   text-align: center;
+// `;
 
 export const Container = styled.div`
   display: flex;
@@ -41,5 +42,5 @@ export const Container = styled.div`
 export const TitleReg = styled.h2`
   text-align: center;
   margin-bottom: 15px;
-  color: #2e2d2dbc;
+  color: #211e93;
 `;

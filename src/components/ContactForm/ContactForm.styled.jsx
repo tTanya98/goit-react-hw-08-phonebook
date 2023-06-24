@@ -13,6 +13,7 @@ export const AddModalBtn = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ae1abe;
 `;
 
 export const UserIcon = styled(UserAddOutlined)`
@@ -42,4 +43,5 @@ export const AddModal = styled(Modal)`
 
 export const OpenAddModal = styled(Button)`
   margin: 15px 0;
+  background-color: #ae1abe;
 `;

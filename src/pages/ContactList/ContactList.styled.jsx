@@ -9,6 +9,7 @@ import {
 export const ButtonRedact = styled(Button)`
   margin-right: 8px;
   margin-left: auto;
+  background-color: #ae1abe;
 `;
 
 export const Item = styled.li`
@@ -79,7 +80,7 @@ export const Spiner = styled(Spin)`
 
 export const Title = styled.h2`
   margin: 20px auto;
-  color: #2e2d2dbc;
+  color: #211e93;
 `;
 
 export const Container = styled.div`

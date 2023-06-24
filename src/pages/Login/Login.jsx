@@ -4,14 +4,14 @@ import {
     UserIcon,
     PasswordIcon,
     InputForm,
-    RegLink,
+    // RegLink,
     Container,
     TitleReg,
   } from './Login.styled';
   
   import { loginization } from 'redux/Authorization/operations'; 
   import { useDispatch } from 'react-redux';
-  import { Link } from 'react-router-dom';
+  // import { Link } from 'react-router-dom';
   
   export default function Login() {
     const [form] = FormWrap.useForm();
@@ -66,9 +66,9 @@ import {
               <LogButton type="primary" htmlType="submit">
                 Log in
               </LogButton>
-              <RegLink>
+              {/* <RegLink>
                 Or <Link to="/register">register now</Link>
-              </RegLink>
+              </RegLink> */}
             </FormWrap.Item>
           </FormWrap>
         </Container>

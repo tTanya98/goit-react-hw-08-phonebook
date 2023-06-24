@@ -79,13 +79,11 @@ import {
           <List>
             {visibleContacts.map(({ id, name, number }) => (
               <Item key={id}>
-                {/* для іконки */}
                 <DivName>
                   <UserIconList />
                   {name}:
                 </DivName>
                 <PhoneiconList /> {number}
-                {/* для кнопок */}
                 <ButtonRedact
                   onClick={() => showModal(name, number, id)}
                   title="Edit contatc"

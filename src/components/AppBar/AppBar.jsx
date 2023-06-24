@@ -1,10 +1,6 @@
 import {
     Nav,
     Link,
-    RegIcon,
-    LogInIcon,
-    HomeIcon,
-    ContactIcon,
     Container,
   } from './AppBar.styled';
   
@@ -23,12 +19,10 @@ import {
           <Nav>
             <div>
               <Link to="/">
-                <HomeIcon />
                 Home
               </Link>
               {isLoaggedIn && (
                 <Link to="/contacts">
-                  <ContactIcon />
                   Contacts
                 </Link>
               )}
@@ -39,11 +33,9 @@ import {
               ) : (
                 <>
                   <Link to="/register">
-                    <RegIcon />
                     Register
                   </Link>
                   <Link to="/login">
-                    <LogInIcon />
                     Log in
                   </Link>
                 </>

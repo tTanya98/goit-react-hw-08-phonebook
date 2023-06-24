@@ -7,8 +7,6 @@ import {
     RegMail,
     RegUser,
     RegPassWord,
-    // LinkToLog,
-    // ContLabel,
     Container,
     TitleReg,
   } from './Register.styled';
@@ -124,10 +122,6 @@ import {
               <SubmitButton type="primary" htmlType="submit">
                 Register
               </SubmitButton>{' '}
-              {/* <ContLabel>
-                or <LinkToLog to="/login"> log in</LinkToLog>if you already have
-                an account{' '}
-              </ContLabel> */}
             </Label>
           </FormReg>
         </Container>

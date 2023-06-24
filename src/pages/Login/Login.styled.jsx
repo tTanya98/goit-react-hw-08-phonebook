@@ -28,11 +28,6 @@ export const InputForm = styled(Input)`
   width: 100%;
 `;
 
-// export const RegLink = styled.div`
-//   font-size: 18px;
-//   text-align: center;
-// `;
-
 export const Container = styled.div`
   display: flex;
   justify-content: center;

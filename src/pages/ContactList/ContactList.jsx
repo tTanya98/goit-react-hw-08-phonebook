@@ -12,7 +12,7 @@ import {
     Spiner,
     Title,
     Container,
-  } from './ContactList.styled'; // для стилів
+  } from './ContactList.styled'; 
   
   import { useDispatch, useSelector } from 'react-redux';
   
@@ -20,7 +20,7 @@ import {
     deleteContact,
     redactContatc,
     fetchContacts,
-  } from 'Redux/Contacts/operations'; // для операцій
+  } from 'redux/Contacts/operation'; 
   
   import { useEffect, useState } from 'react';
   import { Filter } from 'components/Filter/Filter';

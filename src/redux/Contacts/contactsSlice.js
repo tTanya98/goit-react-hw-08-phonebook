@@ -4,11 +4,11 @@ import {
   deleteContact,
   addContact,
   redactContatc,
-} from '.operation';
+} from './operation';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { logOut } from 'Redux/Authorization/operations';
+import { logOut } from 'redux/Authorization/operations';
 
 const handlePending = state => {
   state.isLoading = true;

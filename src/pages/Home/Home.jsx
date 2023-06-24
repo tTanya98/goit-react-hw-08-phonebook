@@ -16,7 +16,7 @@ import {
   
     return (
       <Section>
-        <Title>Wellcome to you PhoneBook</Title>
+        <Title>Hello! This is your PhoneBook</Title>
   
         <Wrap>
           {' '}
@@ -27,11 +27,11 @@ import {
   
         {!isLoaggedIn ? (
           <UnderTitle>
-            Please
+            You should
             <HomeLink to="/register">Register</HomeLink>
             or
             <HomeLink to="/login">Log in</HomeLink>
-            to be able to use your PhoneBook
+            before use your PhoneBook
           </UnderTitle>
         ) : (
           <UnderTitle>

@@ -26,6 +26,7 @@ export const SubmitButton = styled(Button)`
   margin-left: 30%;
   display: block;
   font-size: 18px;
+  background-color: #ae1abe;
 `;
 
 export const InputReg = styled(Input)`
@@ -67,5 +68,5 @@ export const ContLabel = styled.div`
 export const TitleReg = styled.h2`
   margin-left: 30%;
   margin-bottom: 15px;
-  color: #2e2d2dbc;
+  color: #211e93;
 `;

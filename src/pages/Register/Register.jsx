@@ -7,13 +7,13 @@ import {
     RegMail,
     RegUser,
     RegPassWord,
-    LinkToLog,
-    ContLabel,
+    // LinkToLog,
+    // ContLabel,
     Container,
     TitleReg,
   } from './Register.styled';
   
-  import { register } from 'Redux/Authorization/operations';
+  import { register } from 'redux/Authorization/operations';
   import { useDispatch, useSelector } from 'react-redux';
   
   export default function Register() {
@@ -38,16 +38,16 @@ import {
             name="register"
             onFinish={onFinish}
             initialValues={{
-              residence: ['zhejiang', 'hangzhou', 'xihu'], // початкові значення для селекта
+              residence: ['zhejiang', 'hangzhou', 'xihu'], 
               prefix: '86',
             }}
             scrollToFirstError
           >
-            <TitleReg>Register new user</TitleReg>
+            <TitleReg>Register form</TitleReg>
             <Label
               name="name"
               label="Name"
-              tooltip="What do you want others to call you?"
+              tooltip="What do you want your name to be?"
               rules={[
                 {
                   required: true,
@@ -124,10 +124,10 @@ import {
               <SubmitButton type="primary" htmlType="submit">
                 Register
               </SubmitButton>{' '}
-              <ContLabel>
+              {/* <ContLabel>
                 or <LinkToLog to="/login"> log in</LinkToLog>if you already have
                 an account{' '}
-              </ContLabel>
+              </ContLabel> */}
             </Label>
           </FormReg>
         </Container>

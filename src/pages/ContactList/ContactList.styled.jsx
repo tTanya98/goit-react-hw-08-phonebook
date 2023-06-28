@@ -24,6 +24,7 @@ export const Item = styled.li`
 `;
 
 export const List = styled.ul`
+margin-top: 20px;
   display: flex;
   gap: 15px;
   flex-direction: column;

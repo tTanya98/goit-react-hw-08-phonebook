@@ -1,132 +1,79 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/Contacts/operation'; 
-import { useState } from 'react';
-import {
-  FormWrap,
-  AddModalBtn,
-  UserIcon,
-  PhoneIcon,
-  InputForm,
-  AddModal,
-  OpenAddModal,
-} from './ContactForm.styled'; 
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux';
 
-export const ContactForm = () => {
-  const [open, setOpen] = useState(false); 
-  const [form] = FormWrap.useForm();
-  const currentContacts = useSelector(state => state.contacts.items); 
-  const loader = useSelector(state => state.contacts.isLoading);
+import PropTypes from 'prop-types';
+
+import { selectContactsList } from 'redux/Contacts/selectors';
+import { addContact } from 'redux/Contacts/operation';
+
+import { Form, Input, Label, Button, AddUserIcon } from './ContactForm.styled';
+import { Notify } from 'notiflix';
+
+export const ContactForm = ({ onCloseModal }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContactsList);
 
-  const showModal = () => {
-    form.resetFields(); 
-    setOpen(true); 
-  };
+  const handleSubmit = e => {
+    e.preventDefault();
 
-  const submit = value => {
-
-    const formatTel = () => {
-      const number = value.number;
-      const phoneLength = number.length;
-
-      if (phoneLength < 7) {
-        return `(${number.slice(0, 3)}) ${number.slice(3)}`; 
-      }
-
-      return `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(
-        6,
-        10
-      )}`;
-    };
-
-    const newContact = { name: value.name, number: formatTel() }; 
-    const newContactName = newContact.name.toLowerCase();
-
-    if (
-      currentContacts.find(
-        contact => contact.name.toLowerCase() === newContactName
-      )
-    ) {
-      alert(`${newContact.name} is already in contact`); 
-    } else {
-      dispatch(addContact(newContact)); 
-
-      if (!loader) {
-        form.resetFields();
-        setOpen(false);
-      }
+    const form = e.target;
+    const formName = e.target.elements.name.value;
+    const formNumber = e.target.elements.number.value;
+    if (contacts.some(({ name }) => name === formName)) {
+      return alert(`${formName} is already in contacts`);
     }
+
+    if (contacts.some(({ number }) => number === formNumber)) {
+      return alert(`${formNumber} is already in contacts`);
+    }
+
+    dispatch(addContact({ name: formName, number: formNumber.toString() }))
+      .unwrap()
+      .then(originalPromiseResult => {
+        Notify.success(
+          `${originalPromiseResult.name} successfully added to contacts`
+        );
+      })
+      .catch(() => {
+        Notify.failure("Sorry, something's wrong");
+      });
+
+    onCloseModal();
+    form.reset();
   };
 
   return (
-    <>
-      <OpenAddModal
-        type="primary"
-        onClick={showModal}
-        title="add new contact"
-        size={'large'} 
-      >
-        <PlusCircleOutlined />
-        Add contact
-      </OpenAddModal>
-
-      <AddModal
-        footer={null}
-        title="Add new contact"
-        open={open}
-        onCancel={() => setOpen(false)}
-      >
-        <FormWrap
-          form={form}
-          name="normal_login"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={submit}
-        >
-          <FormWrap.Item
-            name="name"
-            rules={[
-              {
-                required: true,
-                message: 'Please input Name!',
-                type: 'text',
-              },
-            ]}
-          >
-            <InputForm
-              prefix={<UserIcon />}
-              placeholder="Name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            />
-          </FormWrap.Item>
-
-          <FormWrap.Item
-            name="number"
-            rules={[
-              {
-                required: true,
-                message: 'Please input Number!',
-                type: 'phone',
-              },
-            ]}
-          >
-            <InputForm
-              prefix={<PhoneIcon />}
-              type=""
-              placeholder="Number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            />
-          </FormWrap.Item>
-
-          <FormWrap.Item>
-            <AddModalBtn type="primary" htmlType="submit">
-              Create contact
-            </AddModalBtn>
-          </FormWrap.Item>
-        </FormWrap>
-      </AddModal>
-    </>
+    <Form onSubmit={handleSubmit} autoComplete="off">
+      <Label>
+        Name
+        <Input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          placeholder="Enter name ..."
+          value={contacts.name}
+        />
+      </Label>
+      <Label>
+        Number
+        <Input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          placeholder="Enter number ..."
+          value={contacts.number}
+        />
+      </Label>
+      <Button type="submit">
+        <AddUserIcon />
+        New contact
+      </Button>
+    </Form>
   );
+};
+
+ContactForm.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
 };

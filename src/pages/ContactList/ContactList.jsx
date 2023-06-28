@@ -86,7 +86,7 @@ import {
                 <PhoneiconList /> {number}
                 <ButtonRedact
                   onClick={() => showModal(name, number, id)}
-                  title="Edit contatc"
+                  title="Edit contact"
                 >
                   <EditOutlined />
                   Edit
@@ -102,7 +102,7 @@ import {
                   </Button>
                 </Popconfirm>
               </Item>
-            ))}
+            ))}  
   
             <ModalRedact
               title="Edit a contact"

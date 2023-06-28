@@ -12,19 +12,19 @@ import {
 } from './Register.styled';
 
 import { register } from 'redux/Authorization/operations';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export default function Register() {
   const [form] = FormReg.useForm();
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(state => state.auth);
+  // const { isLoading, error } = useSelector(state => state.auth);
 
   const onFinish = values => {
     const { name, email, password, confirm } = values;
 
     if (password === confirm) {
       dispatch(register({ name, email, password })); 
-      !isLoading && !error && form.resetFields(); 
+      // !isLoading && !error && form.resetFields(); 
     }
   };
 

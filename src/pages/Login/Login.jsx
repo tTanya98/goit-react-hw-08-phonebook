@@ -17,7 +17,7 @@ export default function Login() {
 
   const onFinish = values => {
     dispatch(loginization(values)); 
-    form.resetFields(); 
+    // form.resetFields(); 
   };
 
   return (

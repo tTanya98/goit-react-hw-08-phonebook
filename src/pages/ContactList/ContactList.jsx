@@ -13,7 +13,8 @@ import {
     Title,
     Container,
   } from './ContactList.styled'; 
-  
+  import { Notify } from 'notiflix';
+
   import { useDispatch, useSelector } from 'react-redux';
   
   import {
@@ -37,7 +38,24 @@ import {
   
     const handleOk = () => {
       setIsModalOpen(false); 
-      dispatch(redactContatc({ id: subId, name: subName, number: subNumber })); 
+      if (contacts.some(({ name }) => name === subName)) {
+        return alert(`${subName} is already in contacts`);
+      }
+  
+      if (contacts.some(({ number }) => number === subNumber)) {
+        return alert(`${subNumber} is already in contacts`);
+      }
+      dispatch(redactContatc({ id: subId, name: subName, number: subNumber }))
+      .unwrap()
+      .then(originalPromiseResult => {
+        Notify.success(
+          `${originalPromiseResult.name} successfully added to contacts`
+        );
+      })
+      .catch(() => {
+        Notify.failure("Sorry, something's wrong");
+      });
+
     };
   
     const showModal = (name, number, id) => {
@@ -58,11 +76,11 @@ import {
     const { isLoading } = useSelector(state => state.contacts);
     const contacts = useSelector(state => state.contacts.items);
     const filterData = useSelector(state => state.filter).toLowerCase(); 
-  
+
     const visibleContacts = contacts.filter(subscriber =>
       subscriber.name.toLowerCase().includes(filterData)
     );
-  
+
     return (
       <section>
         <Container>
